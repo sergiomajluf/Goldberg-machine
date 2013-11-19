@@ -3,12 +3,14 @@
   Physical IN » (XBee) Serial OUT
   
   Wireless multi-node machine inspired by "Rube Goldberg Machine" 
-  Project for ITP Class Understanding Networks by Tom Igo
+  Project for ITP Class Understanding Networks by Tom Igoe
 
-  Toy trigger is connected to the base of a NPN transistor through a 220Ω resistor.
-  Emitter connected to ground, and Collector to one of the toys switch leads. The
-  other lead from the toy, to ground.
+  Physical object is waitin for a collision, that is triggered by a simple pushbutton.
+  Following code is based off the de-bouncing code. Once triggered, it
+  will send a serial (wireless through Xbee) message to the next node
+  in the Rube Goldberg network.
   
+  Code on https://github.com/sergiomajluf/Goldberg-machine
   Game Instructions on http://itp.nyu.edu/physcomp/Labs/XBeeTelephoneGame
   
   Sergio Majluf and Donna Miller
@@ -17,18 +19,16 @@
 
 */
 
-const int buttonPin = 2;    // the number of the pushbutton pin
-const int greenLED = 4;      // the number of the LED pin
+const int buttonPin = 2;
+const int greenLED = 4;     // LED's provide state feedback
 const int redLED = 5;
 int myGroupNumber = 6;
 
 // Variables will change:
-int ledState = HIGH;         // the current state of the output pin
-int buttonState;             // the current reading from the input pin
-int lastButtonState = LOW;   // the previous reading from the input pin
+int ledState = HIGH;         // will use this to light either LED
+int buttonState;             // the current input reading
+int lastButtonState = LOW;   // the previous reading
 
-// the following variables are long's because the time, measured in miliseconds,
-// will quickly become a bigger number than can be stored in an int.
 long lastDebounceTime = 0;  // the last time the output pin was toggled
 long debounceDelay = 50;    // the debounce time; increase if the output flickers
 
@@ -44,7 +44,6 @@ void setup() {
 }
 
 void loop() {
-  // read the state of the switch into a local variable:
   int reading = digitalRead(buttonPin);
 
   // check to see if you just pressed the button 

@@ -3,12 +3,16 @@
   (Serial) XBee IN » Physical OUT
   
   Wireless multi-node machine inspired by "Rube Goldberg Machine" 
-  Project for ITP Class Understanding Networks by Tom Igo
+  Project for ITP Class Understanding Networks by Tom Igoe
 
-  Toy trigger is connected to the base of a NPN transistor through a 220Ω resistor.
-  Emitter connected to ground, and Collector to one of the toys switch leads. The
-  other lead from the toy, to ground.
+  Arduino waiting for a specific serial message input.
   
+  Then, a toy car swithed motor is triggered to start motion.
+  Digital out form the Arduino is connected to the base of a NPN transistor
+  through a 220Ω resistor. Emitter connected to ground, and Collector to one of the toys switch leads. The
+  other lead from the toy, to ground. 
+  
+  Code on https://github.com/sergiomajluf/Goldberg-machine
   Game Instructions on http://itp.nyu.edu/physcomp/Labs/XBeeTelephoneGame
   
   Sergio Majluf and Donna Miller
